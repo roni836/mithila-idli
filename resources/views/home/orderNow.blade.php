@@ -203,7 +203,7 @@
             const quantity = parseInt(this.value, 10);
             if (!isNaN(quantity) && quantity >= 50) {
                 const totalPrice = quantity * pricePerPlate;
-                document.getElementById('total_amount').value = '₹ ' + totalPrice;
+                document.getElementById('total_amount').value = totalPrice;
             } else {
                 document.getElementById('total_amount').value = '';
             }

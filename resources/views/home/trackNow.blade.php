@@ -89,6 +89,7 @@
                                     `);
                                 });
                                 card.removeClass('hidden');
+                                $('#errorMessage').html('').removeClass('hidden');
                             } else {
                                 $('#errorMessage').html('<p>No orders found.</p>').removeClass('hidden');
                             }

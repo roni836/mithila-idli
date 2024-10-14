@@ -40,8 +40,9 @@
                         card.empty();
                         let data = response.data;
 
-                        data.forEach((data) => {
+                        data.filter(data => data.status == 1).forEach((data) => {
                             card.append(`
+
                             <div class="card w-full md:w-5/6 mb-4 capitalize">
                                 <div class="block max-w-full md:w-5/6 p-4 bg-white border border-purple-300 rounded-lg hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
                                     <div class="flex flex-col md:flex-row justify-between">

@@ -268,10 +268,15 @@
                                     <td class="border-b border-gray-200 px-3 text-center py-2 text-sm">${data.name}</td> 
                                     <td class="border-b border-gray-200 px-3 text-center py-2 text-sm">${data.mobile}</td> 
                                     <td class="border-b border-gray-200 px-3 text-center py-2 text-sm">${data.career.title}</td> 
-                                     <td class="border-b border-gray-200 px-3 text-center py-2 text-sm">${data.status==1 ? `<p class='text-white bg-green-600 p-1 rounded-md' >Active</p>` : `<p class='text-white bg-red-500 p-1 rounded-md' >Inactive</p>` }</td> 
+                                     <td class="border-b border-gray-200 px-3 text-center py-2 text-sm" style="text-align:center;">
+                                        <label class="inline-flex items-center mb-5 cursor-pointer">
+                                                <input type="checkbox" class="sr-only peer status-toggle" data-id="${data.id}" ${data.status == 1 ? 'checked' : ''}>
+                                                <div class="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:w-5 after:h-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
+                                        </label>
+                                    </td>
                                     <td class="border-b border-gray-200 px-3 text-center py-2 text-sm">${data.city},${data.state}</td> 
 
-                                    <td class="border-b flex justify-center gap-3 border-gray-200 px-3 text-center py-2 text-sm">
+                                    <td class="border-b flex justify-center gap-3 border-gray-200 px-3 text-center py-4 text-sm">
                                          <a href="{{url('/admin/manage-job-form/${data.id}')}}" class=" py-1 px-2 editBtn "data-id='${data.id}'><svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 hover:text-gray-800   text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.522 5 12 5c4.478 0 8.268 2.943 9.542 7-.823 2.536-2.601 4.64-4.908 5.79-2.306 1.15-5.097 1.15-7.404 0C5.06 16.64 3.281 14.536 2.458 12z" />
@@ -368,6 +373,28 @@
             // Cancel edit Doctor button click handler
             $('#cancelEdit').click(function() {
                 $('#default-modal').addClass('hidden');
+            });
+
+            $(document).on('change', '.status-toggle', function() {
+                let id = $(this).data('id');
+                let status = $(this).is(':checked') ? 1 : 0;
+                
+                $.ajax({
+                    type: 'PUT',
+                    url: `{{url('/api/job-form/status/${id}')}}`,
+                    data: { status: status },
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    success: function(response) {
+                        console.log(response); 
+                        swal("Success", response.message, "success");
+                        callingSarkariJobs(); 
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Error updating Details:', error);
+                    }
+                });
             });
 
             $(document).on('click', '.delete-btn', function() {

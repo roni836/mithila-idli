@@ -87,3 +87,7 @@ Route::get('/gallery/view/{id}',[GalleryController::class,'show']);
 Route::delete('/gallery/delete/{id}',[GalleryController::class,'destroy']);
 
 
+
+Route::put('/job-form/status/{id}',[JobController::class,'updateStatus']);
+
+

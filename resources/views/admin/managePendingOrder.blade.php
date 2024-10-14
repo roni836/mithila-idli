@@ -10,7 +10,7 @@
             <table class="min-w-full bg-white border border-gray-200" id="callingData">
                 <thead class="bg-gray-100">
                     <tr>
-                        <th class="border-b border-gray-200 px-3 py-2 text-sm">Id</th>
+                        <th class="border-b border-gray-200 px-3 py-2 text-sm">S.no</th>
                         <th class="border-b border-gray-200 px-3 py-2 text-sm">Order ID</th>
                         <th class="border-b border-gray-200 px-3 py-2 text-sm">Name</th>
                         <th class="border-b border-gray-200 px-3 py-2 text-sm">Mobile</th>
@@ -311,11 +311,11 @@
                             }
                             table.append(`
                                 <tr class="mt-5">
-                                    <td class=" px-3 text-center py-2 text-sm">${key+1}</td> 
+                                    <td class="text-sm"style="text-align:center;">${key+1}</td> 
                                     <td class=" px-3 text-center py-2 text-sm">${data.order_id}</td> 
                                     <td class=" px-3 text-center py-2 text-sm">${data.name}</td> 
                                     <td class="text-sm"style="text-align:center;">${data.mobile}</td> 
-                                    <td class=" px-3 text-center py-2 text-sm">${data.quantity}</td> 
+                                    <td class="text-sm"style="text-align:center;">${data.quantity}</td> 
                                     <td class=" px-3 text-center py-2 text-sm">${status}</td> 
                                     <td class=" px-3 text-center py-2 text-sm">${data.address}</td> 
                                     <td class=" px-3 text-center py-2 text-sm">                                  
